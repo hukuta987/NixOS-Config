@@ -10,8 +10,16 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Version & Locales
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
   time.timeZone = "Europe/Moscow";
+
+  # Fish
+  programs.fish.enable = true;
+  users.users.hukuta = {
+    isNormalUser = true;
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+  };
 
   # Xorg
   services.xserver = {
@@ -29,7 +37,7 @@
   services.xserver.windowManager.dwm = {
     enable = true;
     package = pkgs.dwm.overrideAttrs (oldAttrs: {
-      src = /etc/nixos/dwm-src;
+      src = /etc/nixos/dwm;
     });
   };
 
@@ -40,19 +48,27 @@
     xterm
     ranger
     gnumake
+    wmctrl
     fastfetch
     feh
+    fish
+    telegram-desktop
     firefox
     btop
     neovim
+    dunst
     unzip
+    cava
+    eww
     dmenu
     flameshot
     xclip
+    tty-clock
     clipmenu
     git
     xorg.xrandr
     xorg.xsetroot
+    xcursor-themes
   ];
 
   # Network
@@ -68,14 +84,13 @@
   };
 
   # Sudo (Optional)
-  # security.sudo.enable = true;
-  # security.sudo.wheelNeedsPassword = false;
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
   # .xinitrc
   system.activationScripts.createXinitrc = {
     text = ''
       cat > $HOME/.xinitrc <<'EOF'
-      picom &
       exec dwm
       EOF
       chmod +x $HOME/.xinitrc
