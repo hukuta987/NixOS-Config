@@ -41,14 +41,47 @@
     });
   };
 
+  # Zapret
+  services.zapret = {
+    enable = true;
+    params = [
+      "--dpi-desync=fake,fakeddisorder"
+      "--dpi-desync-fooling=datanoack"
+      "--dpi-desync-split-pos=midsld"
+    ];
+    whitelist = [
+       "
+       discord.com
+       discord-attachments-uploads-prd.storage.googleapis.com
+       googleapis.com
+       googlevideo.com
+       ytimg.com
+       youtube.com
+       youtu.be
+       "
+    ];
+  };
+
+  # Throne
+  programs.throne.package = pkgs.throne;
+  programs.throne = {
+    enable = true;
+    tunMode.enable = true;
+  };
+
   # Packages
   environment.systemPackages = with pkgs; [
-    #(import ./pkgs/v2rayN.nix {inherit pkgs; })
+    vesktop
     picom
+    throne
     xterm
     ranger
     gnumake
     wmctrl
+    obsidian
+    spotify
+    spicetify-cli
+    zapret
     fastfetch
     feh
     fish
