@@ -72,7 +72,7 @@
   # Packages
   environment.systemPackages = with pkgs; [
     vesktop
-    picom
+    picom-pijulius
     throne
     xterm
     ranger
@@ -94,6 +94,7 @@
     cava
     eww
     dmenu
+    sxiv
     flameshot
     xclip
     tty-clock
@@ -120,13 +121,5 @@
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
-  # .xinitrc
-  system.activationScripts.createXinitrc = {
-    text = ''
-      cat > $HOME/.xinitrc <<'EOF'
-      exec dwm
-      EOF
-      chmod +x $HOME/.xinitrc
-    '';
-  };
+
 }
