@@ -1,0 +1,28 @@
+[global]
+
+  origin = top-center
+  width = (500, 500)
+  height = (80, 80)
+  alignment = center
+  max_icon_size = 64
+
+  frame_width = 2
+  transparency = 6
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#aaaaaa"
+    frame_color = "#555555"
+
+[urgency_normal]
+    background = "#222222"
+    foreground = "#aaaaaa"
+    frame_color = "#555555"
+
+[urgency_critical]
+    background = "#222222"
+    foreground = "#aaaaaa"
+    frame_color = "#555555"
+
+  
+
