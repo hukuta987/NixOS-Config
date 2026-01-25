@@ -12,6 +12,10 @@
   # Version & Locales
   system.stateVersion = "25.11";
   time.timeZone = "Europe/Moscow";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_CTYPE = "en_US.UTF-8";
+  };
 
   # Fish
   programs.fish.enable = true;
@@ -20,6 +24,11 @@
     shell = pkgs.fish;
     extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
   };
+
+  # SSH
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = true;
+  services.openssh.settings.PermitRootLogin = "no";
 
   # Xorg
   services.xserver = {
@@ -62,36 +71,56 @@
     ];
   };
 
+  # V2Ray
+  services.v2raya = {
+    enable = true;
+  };
+
+
   # Throne
   programs.throne.package = pkgs.throne;
   programs.throne = {
     enable = true;
     tunMode.enable = true;
   };
+  boot.kernelModules = [ "tun" ];
+  networking.useNetworkd = true;
 
   # Packages
   environment.systemPackages = with pkgs; [
     vesktop
     picom-pijulius
     throne
-    xterm
-    ranger
+    nnn
+    ppsspp
     gnumake
     wmctrl
+    p7zip
+    dejavu_fonts
     obsidian
+    playerctl
+    xdelta
     spotify
-    spicetify-cli
+    v2raya
+    ueberzug
+    openssh
+    prismlauncher
     zapret
+    util-linux
+    coreutils
     fastfetch
     feh
     fish
     telegram-desktop
+    kitty
     firefox
     btop
     neovim
     dunst
+    spotifyd
     unzip
     cava
+    viu
     eww
     dmenu
     sxiv
